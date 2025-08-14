@@ -1,0 +1,146 @@
+{
+  "name": "timezap",
+  "displayName": "TimeZap",
+  "publisher": "ThundrWebSolutions",
+  "description": "A simple but powerful way of tracking the time you spend coding.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmrgn/timezap.git"
+  },
+  "keywords": [
+    "time-tracking",
+    "productivity",
+    "vscode"
+  ],
+  "author": "Daniel Morgan <timezap@thundr.ca>",
+  "homepage": "https://github.com/dmrgn",
+  "license": "MIT",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:timezap.showDashboard",
+    "onCommand:timezap.showSummary",
+    "onCommand:timezap.exportData",
+    "onCommand:timezap.importData",
+    "onCommand:timezap.resetData",
+    "onCommand:timezap.startTracking",
+    "onCommand:timezap.stopTracking",
+    "onCommand:timezap.toggleAutoStart"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "timezap.showDashboard",
+        "title": "TimeZap: Show Dashboard"
+      },
+      {
+        "command": "timezap.showSummary",
+        "title": "TimeZap: Show Summary"
+      },
+      {
+        "command": "timezap.exportData",
+        "title": "TimeZap: Export Data"
+      },
+      {
+        "command": "timezap.importData",
+        "title": "TimeZap: Import Data"
+      },
+      {
+        "command": "timezap.resetData",
+        "title": "TimeZap: Reset Data for Workspace"
+      },
+      {
+        "command": "timezap.startTracking",
+        "title": "TimeZap: Start Tracking"
+      },
+      {
+        "command": "timezap.stopTracking",
+        "title": "TimeZap: Stop Tracking"
+      },
+      {
+        "command": "timezap.toggleAutoStart",
+        "title": "TimeZap: Toggle Auto Start"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "TimeZap",
+      "properties": {
+        "timezap.idleTimeoutSeconds": {
+          "type": "number",
+          "default": 300,
+          "minimum": 10,
+          "description": "Seconds of inactivity before a user is considered idle (default 300)."
+        },
+        "timezap.persistIntervalSeconds": {
+          "type": "number",
+          "default": 30,
+          "minimum": 1,
+          "description": "Interval in seconds to persist aggregated time to storage (default 30)."
+        },
+        "timezap.aggregateBy": {
+          "type": "string",
+          "enum": [
+            "folder",
+            "file"
+          ],
+          "default": "folder",
+          "description": "Whether to aggregate tracked time by workspace folder or by individual file."
+        },
+        "timezap.storage.method": {
+          "type": "string",
+          "enum": [
+            "globalState",
+            "workspaceFile"
+          ],
+          "default": "globalState",
+          "description": "Storage backend for tracked data. 'globalState' stores data in VS Code global storage; 'workspaceFile' stores a JSON file in the workspace (.vscode/timezap.json)."
+        },
+        "timezap.autoStart": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically start tracking on VS Code startup."
+        },
+        "timezap.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show TimeZap status in the status bar."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.32.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.0",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "@types/vscode": "^1.102.0"
+  }
+}
