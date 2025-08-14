@@ -4,6 +4,7 @@
   "publisher": "ThundrWebSolutions",
   "description": "A simple but powerful way of tracking the time you spend coding.",
   "version": "0.1.0",
+  "icon": "https://thundr.ca/thundr.png",
   "engines": {
     "vscode": "^1.103.0"
   },
