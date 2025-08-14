@@ -3,8 +3,8 @@
   "displayName": "TimeZap",
   "publisher": "ThundrWebSolutions",
   "description": "A simple but powerful way of tracking the time you spend coding.",
-  "version": "0.3.0",
-  "icon": "https://thundr.ca/thundr.png",
+  "version": "0.2.0",
+  "icon": "timezap.png",
   "engines": {
     "vscode": "^1.103.0"
   },
